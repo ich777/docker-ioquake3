@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "---Checking if ioquake3 is installed---"
-if [ ! -f ${DATA_DIR}/ioquake3 ]; then
+if [ ! -f ${DATA_DIR}/ioquake3ded ]; then
   echo "---Quake 3 not found, downloading...---"
   if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/ioquake3.zip "${DL_URL}" ; then
     echo "---Successfully downloaded ioquake3---"
@@ -50,10 +50,10 @@ chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting server---"
 cd ${DATA_DIR}
-screen -S ioquake3 -L -Logfile ${SERVER_DIR}/masterLog.0 -d -m ${DATA_DIR}/ioquake3ded/ioq3ded.x86_64 +set net_ip 0.0.0.0 +set net_port ${IOQ3_PORT} +map ${Q3_MAP} ${GAME_PARAMS}
+screen -S ioquake3 -L -Logfile ${DATA_DIR}/masterLog.0 -d -m ${DATA_DIR}/ioquake3ded/ioq3ded.x86_64 +set net_ip 0.0.0.0 +set net_port ${IOQ3_PORT} +map ${Q3_MAP} ${GAME_PARAMS}
 sleep 2
 if [ "${ENABLE_WEBCONSOLE}" == "true" ]; then
   /opt/scripts/start-gotty.sh 2>/dev/null &
 fi
 screen -S watchdog -d -m /opt/scripts/start-watchdog.sh
-tail -f ${SERVER_DIR}/masterLog.0
+tail -f ${DATA_DIR}/masterLog.0
