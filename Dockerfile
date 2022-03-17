@@ -16,6 +16,7 @@ ENV DL_URL="https://files.ioquake3.org/Linux.zip"
 ENV DL_URL_PATCH="https://files.ioquake3.org/quake3-latest-pk3s.zip"
 ENV IOQ3_PORT=27960
 ENV Q3_MAP="q3dm0"
+ENV ENABLE_WEBCONSOLE="true"
 ENV GOTTY_PARAMS="-w --title-format ioquake3"
 ENV UMASK=000
 ENV UID=99
