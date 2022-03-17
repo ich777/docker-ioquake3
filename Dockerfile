@@ -2,6 +2,10 @@ FROM ich777/debian-baseimage
 
 LABEL maintainer="admin@minenet.at"
 
+RUN apt-get update && \
+	apt-get -y install --no-install-recommends unzip && \
+	rm -rf /var/lib/apt/lists/*
+
 ENV DATA_DIR="/ioquake3"
 ENV GAME_CONFIG="template"
 ENV UMASK=000
