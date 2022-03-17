@@ -26,7 +26,7 @@ else
 	echo "---ioquake3 found, continuing...---"
 fi
 
-echo "---Checking if .pk3 files are present---"
+echo "---Checking if pak0.pk3 file is present---"
 if [ ! -f ${DATA_DIR}/.q3a/baseq3/pak0.pk3 ]; then
   echo "-----------------------------------------------------------"
   echo "---No pak file found in your .../.q3a/baseq3/ folder...----"
