@@ -21,8 +21,8 @@ chmod -R 750 /opt/scripts
 chown -R ${UID}:${GID} ${DATA_DIR}
 
 term_handler() {
-	kill -SIGTERM "$killpid"
-	wait "$killpid" -f 2>/dev/null
+	kill -SIGINT $(pgrep ioq3ded.x86_64)
+	tail --pid=$(pgrep ioq3ded.x86_64) -f 2>/dev/null
 	exit 143;
 }
 
