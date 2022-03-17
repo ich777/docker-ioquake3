@@ -1,14 +1,14 @@
 #!/bin/bash
-
 echo "---Checking if ioquake3 is installed---"
 if [ ! -f ${DATA_DIR}/ioquake3ded ]; then
-  echo "---Quake 3 not found, downloading...---"
+  echo "---ioquake3 not found, downloading...---"
   if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/ioquake3.zip "${DL_URL}" ; then
     echo "---Successfully downloaded ioquake3---"
   else
     echo "---Can't download ioquake3 please check your download URL, putting server into sleep mode---"
     sleep infinity
   fi
+  echo "---ioquake3 Patch not found, downloading...---"
   if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/ioquakepatch.zip "${DL_URL_PATCH}" ; then
     echo "---Successfully downloaded ioquake3 Patch---"
   else
@@ -16,9 +16,9 @@ if [ ! -f ${DATA_DIR}/ioquake3ded ]; then
     sleep infinity
   fi
   mkdir -p ${DATA_DIR}/ioquake3ded ${DATA_DIR}/.q3a/baseq3
-  unzip -d ${DATA_DIR}/ioquake3ded ${DATA_DIR}/ioquake3.zip
-  unzip -d ${DATA_DIR}/ioquake3ded ${DATA_DIR}/ioquake3ded/*.zip
-  unzip -d ${DATA_DIR} ${DATA_DIR}/ioquakepatch.zip
+  unzip -o -d ${DATA_DIR}/ioquake3ded ${DATA_DIR}/ioquake3.zip
+  unzip -o -d ${DATA_DIR}/ioquake3ded ${DATA_DIR}/ioquake3ded/*.zip
+  unzip -o -d ${DATA_DIR} ${DATA_DIR}/ioquakepatch.zip
   cp -R ${DATA_DIR}/*-pk3s/baseq3/* ${DATA_DIR}/ioquake3ded/baseq3/
   cp -R ${DATA_DIR}/*-pk3s/missionpack/* ${DATA_DIR}/ioquake3ded/missionpack/
   rm -rf ${DATA_DIR}/ioquake3.zip $(ls -f ${DATA_DIR}/ioquake3ded/*.zip 2>/dev/null) ${DATA_DIR}/ioquakepatch.zip $(ls -d ${DATA_DIR}/*-pk3s 2>/dev/null) 2>/dev/null
@@ -47,6 +47,8 @@ screen -wipe 2&>/dev/null
 
 echo "---Server ready---"
 chmod -R ${DATA_PERM} ${DATA_DIR}
+
+sleep infinity
 
 echo "---Starting server---"
 cd ${DATA_DIR}
