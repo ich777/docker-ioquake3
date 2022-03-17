@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "---Checking if ioquake3 is installed---"
-if [ ! -f ${DATA_DIR}/ioquake3ded ]; then
+if [ ! -f ${DATA_DIR}/ioquake3ded/ioq3ded.x86_64 ]; then
   echo "---ioquake3 not found, downloading...---"
   if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/ioquake3.zip "${DL_URL}" ; then
     echo "---Successfully downloaded ioquake3---"
@@ -27,7 +27,7 @@ else
 fi
 
 echo "---Checking if .pk3 files are present---"
-if [ ! -f ${DATA_DIR/.q3a/baseq3/pak0.pk3 ]; then
+if [ ! -f ${DATA_DIR}/.q3a/baseq3/pak0.pk3 ]; then
   echo "-----------------------------------------------------------"
   echo "---No pak file found in your .../.q3a/baseq3/ folder...----"
   echo "----Please paste all your pak*.pk3 files from your game----"
@@ -47,8 +47,6 @@ screen -wipe 2&>/dev/null
 
 echo "---Server ready---"
 chmod -R ${DATA_PERM} ${DATA_DIR}
-
-sleep infinity
 
 echo "---Starting server---"
 cd ${DATA_DIR}
